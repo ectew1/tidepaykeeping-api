@@ -15,7 +15,7 @@ namespace tidepaykeeping_api.Database
             con.Open();
 
             //prepared statements to prevent sql injections
-            string stm = @"DELETE from songs WHERE id = @id";
+            string stm = @"DELETE from employee WHERE empID = @id";
             using var cmd = new MySqlCommand(stm, con);
 
             //now identifying what those @ really mean

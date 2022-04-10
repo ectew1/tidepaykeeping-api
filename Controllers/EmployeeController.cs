@@ -9,17 +9,17 @@ using Microsoft.Extensions.Logging;
 using tidepaykeeping_api.Database;
 using tidepaykeeping_api.Models;
 using tidepaykeeping_api.Interfaces;
+using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Cors;
 
 namespace tidepaykeeping_api.Controllers
 {
     [ApiController]
-    [Route("tidepaykeeping_api/[controller]")]
+    [Route("tidepaykeeping-api/[controller]")]
     public class EmployeeController : ControllerBase
     {
         [EnableCors("AnotherPolicy")]
-        [HttpGet(Name = "GetSongs")]
-        // [HttpGet()
+        [HttpGet(Name = "GetEmployees")]
         public List<Employee> Get()
         {
             IReadAllEmployees employees = new ReadEmployee();

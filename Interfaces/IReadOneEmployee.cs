@@ -1,4 +1,5 @@
 using tidepaykeeping_api.Models;
+using tidepaykeeping_api.Database;
 
 namespace tidepaykeeping_api.Interfaces
 {

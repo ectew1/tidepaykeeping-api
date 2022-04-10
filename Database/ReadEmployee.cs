@@ -1,17 +1,17 @@
 using System.Security.AccessControl;
 using System.Collections.Generic;
 using System;
-using MySql.Data.MySqlClient;
 using tidepaykeeping_api.Interfaces;
 using tidepaykeeping_api.Models;
+using MySql.Data.MySqlClient;
 
 namespace tidepaykeeping_api.Database
 {
     public class ReadEmployee : IReadAllEmployees, IReadOneEmployee
     {
-        public List<Song> Get()
+        public List<Employee> Get()
         {
-            List<Song> songs = new List<Song>();
+            List<Employee> employees = new List<Employee>();
 
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -23,25 +23,26 @@ namespace tidepaykeeping_api.Database
                 con.Open();
 
                 //prepared statements to prevent sql injections
-                string stm = @"SELECT * from songs ORDER BY Timestamp DESC";
+                string stm = @"SELECT * from employee ORDER BY empID DESC";
 
-                //while loop from sql lite video
                 using var cmd = new MySqlCommand(stm, con);
                 using MySqlDataReader rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
                 {
-                    songs.Add(new Song()
+                    employees.Add(new Employee()
                     {
-                        SongID = rdr.GetInt32(0),
-                        SongTitle = rdr.IsDBNull(1) ? null : rdr.GetString(1),
-                        SongTimestamp = rdr.IsDBNull(2) ? DateTime.MinValue : rdr.GetDateTime(2),
-                        Deleted = rdr.IsDBNull(3) ? null : rdr.GetString(3),
-                        Favorited = rdr.IsDBNull(4) ? null : rdr.GetString(4)
+                        empID = rdr.GetString(0),
+                        empFName = rdr.GetString(1),
+                        empLName = rdr.GetString(2),
+                        salaryByHr = rdr.GetInt32(3),
+                        empRole = rdr.GetString(4),
+                        empEmail = rdr.GetString(5),
+                        empPassword = rdr. GetString(6),
+                        managerID = rdr.IsDBNull(7) ? null : rdr.GetString(7)
                     });
-                    //System.Console.WriteLine($"{rdr.GetInt32(0)} {rdr.GetString(1)} {rdr.GetDateTime(2)} {rdr.GetString(3)}");
                 }
-                return songs;
+                return employees;
             }
             catch (Exception)
             {
@@ -53,9 +54,9 @@ namespace tidepaykeeping_api.Database
             }
         }
 
-        public Song Get(int id)
+        public Employee Get(int id)
         {
-            Song mySong = new Song();
+            Employee myEmployee = new Employee();
 
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;
@@ -67,7 +68,7 @@ namespace tidepaykeeping_api.Database
                 con.Open();
 
                 //prepared statements to prevent sql injections
-                string stm = @"SELECT * from songs WHERE id = @id";
+                string stm = @"SELECT * from employee WHERE empID = @id";
 
                 using var cmd = new MySqlCommand(stm, con);
                 cmd.Parameters.AddWithValue("@id", id);
@@ -75,13 +76,16 @@ namespace tidepaykeeping_api.Database
                 using MySqlDataReader rdr = cmd.ExecuteReader();
 
                 rdr.Read();
-                return new Song()
+                return new Employee()
                 {
-                    SongID = rdr.GetInt32(0),
-                    SongTitle = rdr.IsDBNull(1) ? null : rdr.GetString(1),
-                    SongTimestamp = rdr.IsDBNull(2) ? DateTime.MinValue : rdr.GetDateTime(2),
-                    Deleted = rdr.IsDBNull(3) ? null : rdr.GetString(3),
-                    Favorited = rdr.IsDBNull(4) ? null : rdr.GetString(4)
+                    empID = rdr.GetString(0),
+                    empFName = rdr.GetString(1),
+                    empLName = rdr.GetString(2),
+                    salaryByHr = rdr.GetInt32(3),
+                    empRole = rdr.GetString(4),
+                    empEmail = rdr.GetString(5),
+                    empPassword = rdr.GetString(6),
+                    managerID = rdr.IsDBNull(7) ? null : rdr.GetString(7)
                 };
             }
             catch (Exception)

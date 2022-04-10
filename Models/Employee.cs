@@ -17,16 +17,12 @@ namespace tidepaykeeping_api.Models
 
         public override string ToString()
         {
-            return SongTitle + " (ID: " + SongID + ", Added " + SongTimestamp + ")";
+            return $"ID: {empID} \nName: {empFName} {empLName} \nSalary: ${salaryByHr}/hr \nRole: {empRole} \nEmail: {empEmail} \nPW: {empPassword} \nManagerID: {managerID}";
         }
 
-        // public string ToFile(){
-        //     return SongID + "#" + SongTitle + "#" + SongTimestamp + "#" + Deleted;
-        // }
-
-        public int CompareTo(Employee temp) // since I am using IComparable, I need a CompareTo for "contract"
+        public int CompareTo(Employee temp) //since I am using IComparable, I need a CompareTo for "contract"
         { 
-            return -this.SongTimestamp.CompareTo(temp.SongTimestamp); // negative sign allows the timestamps to be sorted in descending order
+            return -this.empID.CompareTo(temp.empID); 
         }
     }
 }
