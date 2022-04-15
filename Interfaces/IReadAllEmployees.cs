@@ -7,5 +7,7 @@ namespace tidepaykeeping_api.Interfaces
     public interface IReadAllEmployees
     {
         List<Employee> Get();
+        
+        // Employee Get(string empEmail, string empPassword);
     }
 }

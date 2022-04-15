@@ -6,5 +6,6 @@ namespace tidepaykeeping_api.Interfaces
     public interface IReadOneEmployee
     {
          Employee Get(int id);
+         Employee GetOne(string empEmail, string empPassword);
     }
 }

@@ -35,6 +35,14 @@ namespace tidepaykeeping_api.Controllers
         }
 
         [EnableCors("AnotherPolicy")]
+        [HttpGet("{empEmail}/{empPassword}", Name="GetEmailandPassword")]
+        public Employee Get(string empEmail, string empPassword)
+        {
+            IReadOneEmployee employee = new ReadEmployee();
+            return employee.GetOne(empEmail, empPassword);
+        }
+
+        [EnableCors("AnotherPolicy")]
         [HttpPost(Name="PostEmployee")]
         public void Post(Employee e)
         {
