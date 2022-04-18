@@ -9,6 +9,13 @@ namespace tidepaykeeping_api.Models
         public DateTime clockIn {get; set;}
         public DateTime clockOut {get; set;}
         public string empID {get; set;}
+
+        public Timelog()
+        {
+            //timelogID = ;
+            clockIn = DateTime.Now;
+            clockOut = DateTime.Now;
+        }
         
         public override string ToString()
         {
