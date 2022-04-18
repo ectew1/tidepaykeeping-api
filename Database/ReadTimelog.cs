@@ -31,11 +31,10 @@ namespace tidepaykeeping_api.Database
                 {
                     timelogs.Add(new Timelog()
                     {
-                        timelogID = rdr.GetString(0),
-                        clockInDate = rdr.GetDateTime(1),
-                        clockOutDate = rdr.GetDateTime(2),
-                        clockInTime = rdr.GetDateTime(3),
-                        clockOutTime = rdr.GetDateTime(4)
+                        timelogID = rdr.GetInt32(0),
+                        clockIn = rdr.GetDateTime(1),
+                        clockOut = rdr.GetDateTime(2),
+                        empID = rdr.GetString(3)
                     });
                 }
                 return timelogs;
@@ -73,11 +72,10 @@ namespace tidepaykeeping_api.Database
                 rdr.Read();
                 return new Timelog()
                 {
-                    timelogID = rdr.GetString(0),
-                    clockInDate = rdr.GetDateTime(1),
-                    clockOutDate = rdr.GetDateTime(2),
-                    clockInTime = rdr.GetDateTime(3),
-                    clockOutTime = rdr.GetDateTime(4)
+                    timelogID = rdr.GetInt32(0),
+                    clockIn = rdr.GetDateTime(1),
+                    clockOut = rdr.GetDateTime(2),
+                    empID = rdr.GetString(3)
                 };
             }
             catch (Exception)

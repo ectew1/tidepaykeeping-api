@@ -14,15 +14,13 @@ namespace tidepaykeeping_api.Database
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"INSERT INTO timekeeping(timelogID, clockInDate, clockOutDate, clockInTime, clockOutTime) VALUES(@timelogID, @clockInDate, @clockOutDate, @clockInTime, @clockOutTime)";
+            string stm = @"INSERT INTO timekeeping(timelogID, clockIn, clockOut, empID) VALUES(@timelogID, @clockIn, @clockOut, @empID)";
             using var cmd = new MySqlCommand(stm, con);
 
-            //now identifying what those @ really mean
             cmd.Parameters.AddWithValue("@timelogID", timelog.timelogID);
-            cmd.Parameters.AddWithValue("@clockInDate", timelog.clockInDate);
-            cmd.Parameters.AddWithValue("@clockOutDate", timelog.clockOutDate);
-            cmd.Parameters.AddWithValue("@clockInTime", timelog.clockInTime);
-            cmd.Parameters.AddWithValue("@clockOutTime", timelog.clockOutTime);
+            cmd.Parameters.AddWithValue("@clockIn", timelog.clockIn);
+            cmd.Parameters.AddWithValue("@clockOut", timelog.clockOut);
+            cmd.Parameters.AddWithValue("@empID", timelog.empID);
 
             cmd.Prepare();
 

@@ -19,7 +19,6 @@ namespace tidepaykeeping_api.Controllers
     {
         [EnableCors("AnotherPolicy")]
         [HttpGet(Name = "GetTimelogs")]
-        // [HttpGet()
         public List<Timelog> Get()
         {
             IReadAllTimelogs timelogs = new ReadTimelog();

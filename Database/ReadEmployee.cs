@@ -22,7 +22,6 @@ namespace tidepaykeeping_api.Database
             {
                 con.Open();
 
-                //prepared statements to prevent sql injections
                 string stm = @"SELECT * from employee ORDER BY empID DESC";
 
                 using var cmd = new MySqlCommand(stm, con);
