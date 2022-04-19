@@ -12,9 +12,8 @@ namespace tidepaykeeping_api.Models
 
         public Timelog()
         {
-            //timelogID = ;
             clockIn = DateTime.Now;
-            clockOut = DateTime.Now;
+            clockOut = new DateTime(2012, 12, 21, 3, 0, 0); //trigger value for clockOut is 12/21/2012 @3am (when the world was supposed to end in 2012 lol)
         }
         
         public override string ToString()
