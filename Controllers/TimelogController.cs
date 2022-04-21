@@ -34,6 +34,14 @@ namespace tidepaykeeping_api.Controllers
         }
 
         [EnableCors("AnotherPolicy")]
+        [HttpGet("{empID}/{clockOut}", Name="GetOpenTimelog")]
+        public Timelog Get(string empID, DateTime clockOut)
+        {
+            IReadOneTimelog timelog = new ReadTimelog();
+            return timelog.GetOpenTimelog(empID, clockOut);
+        }
+
+        [EnableCors("AnotherPolicy")]
         [HttpPost(Name="PostTimelog")]
         public void Post(Timelog t)
         {
