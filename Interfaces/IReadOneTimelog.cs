@@ -7,7 +7,7 @@ namespace tidepaykeeping_api.Interfaces
 {
     public interface IReadOneTimelog
     {
-         Timelog Get(int id);
+         Timelog Get(int id );
          Timelog GetOpenTimelog(string empID, DateTime clockOut);
     }
 }

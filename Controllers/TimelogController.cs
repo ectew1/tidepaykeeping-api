@@ -25,13 +25,16 @@ namespace tidepaykeeping_api.Controllers
             return timelogs.Get();
         }
 
-        [EnableCors("AnotherPolicy")]
-        [HttpGet("{id}", Name="GetTimelog")]
-        public Timelog Get(int id)
-        {
-            IReadOneTimelog timelog = new ReadTimelog();
-            return timelog.Get(id);
-        }
+        // [EnableCors("AnotherPolicy")]
+        // [HttpGet("{empID}", Name="GetTimelog")]
+        // public Timelog Get(string empID)
+        // {
+        //     Console.WriteLine(empID);
+        //     IReadOneTimelog timelog = new ReadTimelog();
+        //     Console.WriteLine(timelog);
+            
+        //     return timelog.Get(empID);
+        // }
 
         [EnableCors("AnotherPolicy")]
         [HttpGet("{empID}/{clockOut}", Name="GetOpenTimelog")]
