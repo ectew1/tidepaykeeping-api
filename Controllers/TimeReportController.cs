@@ -21,34 +21,40 @@ namespace tidepaykeeping_api.Controllers
         [HttpGet(Name = "GetTimeReports")]
         public List<TimeReport> Get()
         {
-            IReadAllTimeReports timereports = new ReadTimeReport();
-            return timereports.Get();
+            IReadAllTimeReports timeReports = new ReadTimeReport();
+            return timeReports.Get();
         }
 
         [EnableCors("AnotherPolicy")]
-        [HttpGet("{empID}", Name="GetTimelog")]
+        [HttpGet("{empID}", Name="GetOneEmpsTimelog")]
         public TimeReport Get(string empID)
         {
-            IReadOneTimeReport timereport = new ReadTimeReport();
-            return timereport.Get(empID);
+            IReadAllTimeReports timeReports = new ReadTimeReport();
+            return timeReports.Get(empID);
         }
 
-        // POST: api/TimeReport -async
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [EnableCors("AnotherPolicy")]
+        [HttpPost(Name="PostTimeReport")]
+        public void Post(TimeReport t)
         {
+            // ICreateTimelog timelog = new CreateTimelog();
+            // timelog.Create(t);
         }
 
-        // PUT: api/TimeReport -async/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [EnableCors("AnotherPolicy")]
+        [HttpPut]
+        public void Put([FromBody] TimeReport t)
         {
+            // IUpdateTimelog timelog = new UpdateTimelog();
+            // timelog.Update(t);
         }
 
-        // DELETE: api/TimeReport -async/5
+        [EnableCors("AnotherPolicy")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            // IDeleteTimelog timelog = new DeleteTimelog();
+            // timelog.Delete(id);
         }
     }
 }

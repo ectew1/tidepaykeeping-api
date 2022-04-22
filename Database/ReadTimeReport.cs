@@ -22,7 +22,7 @@ namespace tidepaykeeping_api.Database
             {
                 con.Open();
 
-                string stm = @"SELECT * from timekeepingreport;";
+                string stm = @"SELECT * from timekeepingreport ORDER BY empID DESC";
                 using var cmd = new MySqlCommand(stm, con);
                 using MySqlDataReader rdr = cmd.ExecuteReader();
 
@@ -32,9 +32,9 @@ namespace tidepaykeeping_api.Database
                     {
                         empID = rdr.GetString(0),
                         dayofwork = rdr.GetDateTime(1),
-                        clockIn = rdr.GetDateTime(2),
-                        clockOut = rdr.GetDateTime(3),
-                        totalHours = rdr.GetInt64(4)
+                        clockinHour = rdr.GetDateTime(2),
+                        clockoutHour = rdr.GetDateTime(3),
+                        total = rdr.GetInt64(4)
                     });
                 }
                 return timereports;
@@ -62,8 +62,7 @@ namespace tidepaykeeping_api.Database
             {
                 con.Open();
 
-                string stm = @"SELECT 
-	            * from timekeepingreport WHERE empID = @empID;";
+                string stm = @"SELECT * from timekeepingreport WHERE empID = @empID;";
 
                 using var cmd = new MySqlCommand(stm, con);
                 cmd.Parameters.AddWithValue("@empID", empID);
@@ -75,9 +74,9 @@ namespace tidepaykeeping_api.Database
                 {
                     empID = rdr.GetString(0),
                     dayofwork = rdr.GetDateTime(1),
-                    clockIn = rdr.GetDateTime(2),
-                    clockOut = rdr.GetDateTime(3),
-                    totalHours = rdr.GetInt64(4),
+                    clockinHour = rdr.GetDateTime(2),
+                    clockoutHour = rdr.GetDateTime(3),
+                    total = rdr.GetInt64(4)
                 };
             }
             catch (Exception)
@@ -89,7 +88,6 @@ namespace tidepaykeeping_api.Database
                 con.Close();
             }
         }
-
        
     }
 }

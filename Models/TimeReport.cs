@@ -7,9 +7,14 @@ namespace tidepaykeeping_api.Models
     {
         public string empID {get; set;}
         public DateTime dayofwork {get; set;}
-        public DateTime clockIn {get; set;}
-        public DateTime clockOut {get; set;}
-        public double totalHours{get; set;}
+        public DateTime clockinHour {get; set;}
+        public DateTime clockoutHour {get; set;}
+        public double total {get; set;}
+
+        // public TimeReport()
+        // {
+
+        // }
         
         public override string ToString()
         {
