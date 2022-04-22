@@ -7411,19 +7411,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Reidg\\.nuget\\packages\\": {}
+    "/Users/ellietew/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Reidg\\OneDrive\\Desktop\\MIS321project\\tidepaykeeping-api\\tidepaykeeping-api.csproj",
+      "projectUniqueName": "/Users/ellietew/Documents/MIS/repos/Spring22/tidepaykeeping/tidepaykeeping-api/tidepaykeeping-api.csproj",
       "projectName": "tidepaykeeping-api",
-      "projectPath": "C:\\Users\\Reidg\\OneDrive\\Desktop\\MIS321project\\tidepaykeeping-api\\tidepaykeeping-api.csproj",
-      "packagesPath": "C:\\Users\\Reidg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Reidg\\OneDrive\\Desktop\\MIS321project\\tidepaykeeping-api\\obj\\",
+      "projectPath": "/Users/ellietew/Documents/MIS/repos/Spring22/tidepaykeeping/tidepaykeeping-api/tidepaykeeping-api.csproj",
+      "packagesPath": "/Users/ellietew/.nuget/packages/",
+      "outputPath": "/Users/ellietew/Documents/MIS/repos/Spring22/tidepaykeeping/tidepaykeeping-api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Reidg\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/ellietew/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -7482,7 +7482,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
       }
     }
   }

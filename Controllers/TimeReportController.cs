@@ -13,27 +13,24 @@ using Microsoft.AspNetCore.Cors;
 
 namespace tidepaykeeping_api.Controllers
 {
-    [Route("tidepaykeeping-api/[controller]")]
     [ApiController]
+    [Route("tidepaykeeping-api/[controller]")]
     public class TimeReportController : ControllerBase
     {
-        // GET: api/TimeReport -async
-        [HttpGet]
+        [EnableCors("AnotherPolicy")]
+        [HttpGet(Name = "GetTimeReports")]
         public List<TimeReport> Get()
         {
-            IReadTimeReports timelogs = new ReadTimeReport();
-            return timelogs.Get();
+            IReadAllTimeReports timereports = new ReadTimeReport();
+            return timereports.Get();
         }
 
         [EnableCors("AnotherPolicy")]
         [HttpGet("{empID}", Name="GetTimelog")]
         public TimeReport Get(string empID)
         {
-            Console.WriteLine(empID);
-            IReadTimeReports timelog = new ReadTimeReport();
-            Console.WriteLine(timelog);
-            
-            return timelog.Get(empID);
+            IReadOneTimeReport timereport = new ReadTimeReport();
+            return timereport.Get(empID);
         }
 
         // POST: api/TimeReport -async
