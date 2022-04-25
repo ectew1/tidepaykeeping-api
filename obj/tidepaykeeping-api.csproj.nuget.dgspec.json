@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ellietew/Documents/MIS/repos/Spring22/tidepaykeeping/tidepaykeeping-api/tidepaykeeping-api.csproj": {}
+    "/Users/ellietew/Documents/MIS/repos/Spring22/tidemarkets/tidepaykeeping-api/tidepaykeeping-api.csproj": {}
   },
   "projects": {
-    "/Users/ellietew/Documents/MIS/repos/Spring22/tidepaykeeping/tidepaykeeping-api/tidepaykeeping-api.csproj": {
+    "/Users/ellietew/Documents/MIS/repos/Spring22/tidemarkets/tidepaykeeping-api/tidepaykeeping-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ellietew/Documents/MIS/repos/Spring22/tidepaykeeping/tidepaykeeping-api/tidepaykeeping-api.csproj",
+        "projectUniqueName": "/Users/ellietew/Documents/MIS/repos/Spring22/tidemarkets/tidepaykeeping-api/tidepaykeeping-api.csproj",
         "projectName": "tidepaykeeping-api",
-        "projectPath": "/Users/ellietew/Documents/MIS/repos/Spring22/tidepaykeeping/tidepaykeeping-api/tidepaykeeping-api.csproj",
+        "projectPath": "/Users/ellietew/Documents/MIS/repos/Spring22/tidemarkets/tidepaykeeping-api/tidepaykeeping-api.csproj",
         "packagesPath": "/Users/ellietew/.nuget/packages/",
-        "outputPath": "/Users/ellietew/Documents/MIS/repos/Spring22/tidepaykeeping/tidepaykeeping-api/obj/",
+        "outputPath": "/Users/ellietew/Documents/MIS/repos/Spring22/tidemarkets/tidepaykeeping-api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ellietew/.nuget/NuGet/NuGet.Config"
