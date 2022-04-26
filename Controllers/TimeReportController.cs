@@ -40,6 +40,14 @@ namespace tidepaykeeping_api.Controllers
             IReadAllTimeReports timeReports = new ReadTimeReport();
             return timeReports.Get(empID, startDate, endDate);
         }
+        
+        [EnableCors("AnotherPolicy")]
+        [HttpGet("{startDate}/{endDate}", Name="ManagerTimeReports")]
+        public List<TimeReport> Get(DateTime startDate, DateTime endDate)
+        {
+            IReadAllTimeReports timeReports = new ReadTimeReport();
+            return timeReports.Get(startDate, endDate);
+        }
 
         [EnableCors("AnotherPolicy")]
         [HttpPost(Name="PostTimeReport")]

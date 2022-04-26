@@ -145,6 +145,54 @@ namespace tidepaykeeping_api.Database
                 con.Close();
             }
         }
+        public List<TimeReport> Get(DateTime startDate, DateTime endDate)
+        {
+            //CreateTimeReport remake = new CreateTimeReport();
+            CreateTimeReport.DropTimeReportTable();
+            CreateTimeReport.CreateTimeReportTable();
+
+            List<TimeReport> tempReport = new List<TimeReport>();
+
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+
+            try
+            {
+                con.Open();
+
+                string stm = @"SELECT * from timekeepingreport WHERE dayofwork BETWEEN @startDate AND @endDate";
+
+                using var cmd = new MySqlCommand(stm, con);
+                cmd.Parameters.AddWithValue("@startDate", startDate);
+                cmd.Parameters.AddWithValue("@endDate", endDate);
+                cmd.Prepare();
+                using MySqlDataReader rdr = cmd.ExecuteReader();
+
+                //rdr.Read();
+                while (rdr.Read())
+                {
+                    tempReport.Add(new TimeReport()
+                    {
+                        empID = rdr.GetString(0),
+                        dayofwork = rdr.GetDateTime(1),
+                        clockinHour = rdr.GetString(2),
+                        clockoutHour = rdr.GetString(3),
+                        total = rdr.GetDouble(4)
+                    });
+                }
+                return tempReport;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
        
     }
 }

@@ -22,7 +22,7 @@ namespace tidepaykeeping_api.Database
             {
                 con.Open();
 
-                string stm = @"SELECT * from employee ORDER BY empID DESC";
+                string stm = @"SELECT * from employee WHERE empID != 1 ORDER BY empID ASC";
 
                 using var cmd = new MySqlCommand(stm, con);
                 using MySqlDataReader rdr = cmd.ExecuteReader();
