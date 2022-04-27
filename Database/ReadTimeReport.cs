@@ -113,8 +113,8 @@ namespace tidepaykeeping_api.Database
             {
                 con.Open();
 
-                string stm = @"SELECT * from timekeepingreport WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate";
-
+                //string stm = @"SELECT * from timekeepingreport WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate";
+                string stm = @"SELECT empID, dayname(dayofwork), dayofwork, clockinHour, clockoutHour, total from timekeepingreport WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate";
                 using var cmd = new MySqlCommand(stm, con);
                 cmd.Parameters.AddWithValue("@empID", empID);
                 cmd.Parameters.AddWithValue("@startDate", startDate);
@@ -125,14 +125,18 @@ namespace tidepaykeeping_api.Database
                 //rdr.Read();
                 while (rdr.Read())
                 {
+                    //DateTime temp = rdr.GetDateTime(2);
                     tempReport.Add(new TimeReport()
                     {
                         empID = rdr.GetString(0),
-                        dayofwork = rdr.GetDateTime(1),
-                        clockinHour = rdr.GetString(2),
-                        clockoutHour = rdr.GetString(3),
-                        total = rdr.GetDouble(4)
+                        weekday = rdr.GetString(1),
+                        dayofwork = rdr.GetDateTime(2),
+                        clockinHour = rdr.GetString(3),
+                        clockoutHour = rdr.GetString(4),
+                        total = rdr.GetDouble(5)
+                        
                     });
+                    
                 }
                 return tempReport;
             }
