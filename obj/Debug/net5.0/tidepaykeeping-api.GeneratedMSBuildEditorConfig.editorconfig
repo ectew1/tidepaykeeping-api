@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = tidepaykeeping_api
-build_property.ProjectDir = C:\source\repos\TidePayKeeping\tidepaykeeping-api\
+build_property.ProjectDir = c:\source\repos\TidePayKeeping\tidepaykeeping-api\
