@@ -114,7 +114,8 @@ namespace tidepaykeeping_api.Database
                 con.Open();
 
                 //string stm = @"SELECT * from timekeepingreport WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate";
-                string stm = @"SELECT empID, dayname(dayofwork), dayofwork, clockinHour, clockoutHour, total from timekeepingreport WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate";
+                string stm = @"SELECT empID, dayname(dayofwork), dayofwork, clockinHour, clockoutHour, total from timekeepingreport 
+                WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate";
                 using var cmd = new MySqlCommand(stm, con);
                 cmd.Parameters.AddWithValue("@empID", empID);
                 cmd.Parameters.AddWithValue("@startDate", startDate);
@@ -195,6 +196,108 @@ namespace tidepaykeeping_api.Database
             finally
             {
                 con.Close();
+            }
+        }
+
+        public List<TimeReport> Get(string empID, DateTime startDate, DateTime endDate, int i)
+        {
+            // CreateTimeReport.DropTimeReportTable();
+            // CreateTimeReport.CreateTimeReportTable();
+            
+            List<TimeReport> sortedReport = new List<TimeReport>();
+
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+
+            if(i == 1)
+            {
+                try
+                {
+                    con.Open();
+
+                    string stm = @"SELECT empID, dayname(dayofwork), dayofwork, clockinHour, clockoutHour, total 
+                    from timekeepingreport 
+                    WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate
+                    order by weekday(dayofwork)";
+                    using var cmd = new MySqlCommand(stm, con);
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@startDate", startDate);
+                    cmd.Parameters.AddWithValue("@endDate", endDate);
+                    cmd.Prepare();
+                    using MySqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        sortedReport.Add(new TimeReport()
+                        {
+                            empID = rdr.GetString(0),
+                            weekday = rdr.GetString(1),
+                            dayofwork = rdr.GetDateTime(2),
+                            clockinHour = rdr.GetString(3),
+                            clockoutHour = rdr.GetString(4),
+                            total = rdr.GetDouble(5)
+                            
+                        });
+                        
+                    }
+                    return sortedReport;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            else if(i == 2)
+            {
+                try
+                {
+                    con.Open();
+
+                    string stm = @"SELECT empID, dayname(dayofwork), dayofwork, clockinHour, clockoutHour, total 
+                    from timekeepingreport 
+                    WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate
+                    order by total desc";
+                    using var cmd = new MySqlCommand(stm, con);
+                    cmd.Parameters.AddWithValue("@empID", empID);
+                    cmd.Parameters.AddWithValue("@startDate", startDate);
+                    cmd.Parameters.AddWithValue("@endDate", endDate);
+                    cmd.Prepare();
+                    using MySqlDataReader rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        sortedReport.Add(new TimeReport()
+                        {
+                            empID = rdr.GetString(0),
+                            weekday = rdr.GetString(1),
+                            dayofwork = rdr.GetDateTime(2),
+                            clockinHour = rdr.GetString(3),
+                            clockoutHour = rdr.GetString(4),
+                            total = rdr.GetDouble(5)
+                            
+                        });
+                        
+                    }
+                    return sortedReport;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            else
+            {
+                return null;
             }
         }
        

@@ -11,5 +11,6 @@ namespace tidepaykeeping_api.Interfaces
         TimeReport Get(string empID);
         List<TimeReport> Get(string empID, DateTime startDate, DateTime endDate);
         List<TimeReport> Get(DateTime startDate, DateTime endDate);
+        List<TimeReport> Get(string empID, DateTime startDate, DateTime endDate, int i);
     }
 }
