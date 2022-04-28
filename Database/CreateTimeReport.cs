@@ -32,14 +32,20 @@ namespace tidepaykeeping_api.Database
 
             string stm = @"create table timekeepingreport
                         as
-                        SELECT
+                        (SELECT
+                            
                             empID,
+
                             DATE(clockIn) AS dayofwork,
                             DATE_FORMAT(TIME(clockIn), '%r') AS clockinHour,
                             DATE_FORMAT(TIME(clockOut), '%r') AS clockoutHour,
-                            CONVERT( TIMESTAMPDIFF(MINUTE, clockIn, clockOut) / 60 , DECIMAL (3 , 2 )) AS total
+                            CONVERT( TIMESTAMPDIFF(MINUTE, clockIn, clockOut) / 60 , DECIMAL (3 , 2 )) AS total,
+                            timelogID
                         FROM
-                            timekeeping;";
+                            timekeeping);
+ALTER TABLE timekeepingreport                         
+Add Constraint Fk_tlID
+Foreign Key (timelogID) references timekeeping(timelogID);";
 
             using var cmd = new MySqlCommand(stm, con);
 

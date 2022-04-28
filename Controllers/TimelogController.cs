@@ -53,8 +53,22 @@ namespace tidepaykeeping_api.Controllers
         [HttpPut]
         public void Put([FromBody] Timelog t)
         {
+            
             IUpdateTimelog timelog = new UpdateTimelog();
             timelog.Update(t);
+        }
+        [EnableCors("AnotherPolicy")]
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] Timelog t)
+        {
+            Console.WriteLine("Inside Put");
+            Console.WriteLine(t.timelogID);
+            Console.WriteLine(t.NewclockIn);
+            Console.WriteLine(t.NewclockOut);
+            Console.WriteLine(t.empID);
+            IUpdateTimelog timelog = new UpdateTimelog();
+            timelog.UpdateMgr(t);
+            Console.WriteLine("Done with Put");
         }
 
         [EnableCors("AnotherPolicy")]
