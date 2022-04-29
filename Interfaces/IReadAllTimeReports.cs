@@ -5,9 +5,9 @@ using System;
 
 namespace tidepaykeeping_api.Interfaces
 {
-    public interface IReadOneTimelog
+    public interface IReadAllTimeReports
     {
-         Timelog Get(int id );
-         Timelog GetOpenTimelog(string empID, DateTime clockOut);
+        List<TimeReport> Get();
+        TimeReport Get(string empID);
     }
 }
