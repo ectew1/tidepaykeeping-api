@@ -5,5 +5,6 @@ namespace tidepaykeeping_api.Interfaces
     public interface IUpdateTimelog
     {
          void Update(Timelog timelog);
+         void UpdateMgr(Timelog timelog);
     }
 }

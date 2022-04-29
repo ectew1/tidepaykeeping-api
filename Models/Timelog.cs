@@ -9,6 +9,8 @@ namespace tidepaykeeping_api.Models
         public DateTime clockIn {get; set;}
         public DateTime clockOut {get; set;}
         public string empID {get; set;}
+        public string NewclockIn {get; set;}
+        public string NewclockOut {get; set;}
 
         public Timelog()
         {

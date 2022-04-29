@@ -13,6 +13,7 @@ namespace tidepaykeeping_api.Database
         {
             CreateTimeReport.DropTimeReportTable();
             CreateTimeReport.CreateTimeReportTable();
+            CreateTimeReport.AlterTimeReportTable();
 
             List<TimeReport> timereports = new List<TimeReport>();
 
@@ -37,7 +38,8 @@ namespace tidepaykeeping_api.Database
                         dayofwork = rdr.GetDateTime(1),
                         clockinHour = rdr.GetString(2),
                         clockoutHour = rdr.GetString(3),
-                        total = rdr.GetDouble(4)
+                        total = rdr.GetDouble(4),
+                        timelogID = rdr.GetInt32(5)
                     });
                 }
                 return timereports;
@@ -57,6 +59,7 @@ namespace tidepaykeeping_api.Database
             //CreateTimeReport remake = new CreateTimeReport();
             CreateTimeReport.DropTimeReportTable();
             CreateTimeReport.CreateTimeReportTable();
+            CreateTimeReport.AlterTimeReportTable();
 
             TimeReport tempReport = new TimeReport();
 
@@ -83,7 +86,8 @@ namespace tidepaykeeping_api.Database
                     dayofwork = rdr.GetDateTime(1),
                     clockinHour = rdr.GetString(2),
                     clockoutHour = rdr.GetString(3),
-                    total = rdr.GetDouble(4)
+                    total = rdr.GetDouble(4),
+                    timelogID = rdr.GetInt32(5)
                 };
             }
             catch (Exception)
@@ -98,9 +102,9 @@ namespace tidepaykeeping_api.Database
 
         public List<TimeReport> Get(string empID, DateTime startDate, DateTime endDate)
         {
-            //CreateTimeReport remake = new CreateTimeReport();
             CreateTimeReport.DropTimeReportTable();
             CreateTimeReport.CreateTimeReportTable();
+            CreateTimeReport.AlterTimeReportTable();
 
             List<TimeReport> tempReport = new List<TimeReport>();
 
@@ -113,8 +117,8 @@ namespace tidepaykeeping_api.Database
             {
                 con.Open();
 
-                //string stm = @"SELECT * from timekeepingreport WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate";
-                string stm = @"SELECT empID, dayname(dayofwork), dayofwork, clockinHour, clockoutHour, total from timekeepingreport 
+                string stm = @"SELECT empID, dayname(dayofwork), dayofwork, clockinHour, clockoutHour, total, timelogID 
+                from timekeepingreport 
                 WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate";
                 using var cmd = new MySqlCommand(stm, con);
                 cmd.Parameters.AddWithValue("@empID", empID);
@@ -134,7 +138,8 @@ namespace tidepaykeeping_api.Database
                         dayofwork = rdr.GetDateTime(2),
                         clockinHour = rdr.GetString(3),
                         clockoutHour = rdr.GetString(4),
-                        total = rdr.GetDouble(5)
+                        total = rdr.GetDouble(5),
+                        timelogID = rdr.GetInt32(6)
                         
                     });
                     
@@ -155,6 +160,7 @@ namespace tidepaykeeping_api.Database
             //CreateTimeReport remake = new CreateTimeReport();
             CreateTimeReport.DropTimeReportTable();
             CreateTimeReport.CreateTimeReportTable();
+            CreateTimeReport.AlterTimeReportTable();
 
             List<TimeReport> tempReport = new List<TimeReport>();
 
@@ -184,7 +190,8 @@ namespace tidepaykeeping_api.Database
                         dayofwork = rdr.GetDateTime(1),
                         clockinHour = rdr.GetString(2),
                         clockoutHour = rdr.GetString(3),
-                        total = rdr.GetDouble(4)
+                        total = rdr.GetDouble(4),
+                        timelogID = rdr.GetInt32(5)
                     });
                 }
                 return tempReport;
@@ -217,7 +224,7 @@ namespace tidepaykeeping_api.Database
                 {
                     con.Open();
 
-                    string stm = @"SELECT empID, dayname(dayofwork), dayofwork, clockinHour, clockoutHour, total 
+                    string stm = @"SELECT empID, dayname(dayofwork), dayofwork, clockinHour, clockoutHour, total, timelogID
                     from timekeepingreport 
                     WHERE empID = @empID AND dayofwork BETWEEN @startDate AND @endDate
                     order by weekday(dayofwork)";
@@ -237,7 +244,8 @@ namespace tidepaykeeping_api.Database
                             dayofwork = rdr.GetDateTime(2),
                             clockinHour = rdr.GetString(3),
                             clockoutHour = rdr.GetString(4),
-                            total = rdr.GetDouble(5)
+                            total = rdr.GetDouble(5),
+                            timelogID = rdr.GetInt32(6)
                             
                         });
                         

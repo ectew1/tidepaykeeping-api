@@ -33,6 +33,7 @@ namespace tidepaykeeping_api.Database
             string stm = @"create table timekeepingreport
                         as
                         SELECT
+                            timelogID,
                             empID,
                             DATE(clockIn) AS dayofwork,
                             DATE_FORMAT(TIME(clockIn), '%r') AS clockinHour,
@@ -45,6 +46,23 @@ namespace tidepaykeeping_api.Database
 
             cmd.ExecuteNonQuery();
             //System.Console.WriteLine("created table");
+        }
+
+        public static void AlterTimeReportTable()
+        {
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"ALTER TABLE timekeepingreport 
+            Add Constraint Fk_tlID
+            Foreign Key (timelogID) references timekeeping(timelogID);";
+
+            using var cmd = new MySqlCommand(stm, con);
+
+            cmd.ExecuteNonQuery();
         }
     }
 }
